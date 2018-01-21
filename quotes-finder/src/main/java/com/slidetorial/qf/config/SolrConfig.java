@@ -10,7 +10,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.data.solr.core.SolrTemplate;
 import org.springframework.data.solr.repository.config.EnableSolrRepositories;
-import org.springframework.data.solr.server.SolrClientFactory;
 import org.springframework.data.solr.server.support.EmbeddedSolrServerFactory;
 import com.slidetorial.qf.RootPackageMarker;
 
@@ -26,26 +25,25 @@ public class SolrConfig
 {
 
 	/**
-	 * @param factory
-	 *                the solr client factory
+	 * @param client
+	 *                the solr client
 	 * @return the solr template
 	 */
 	@Bean
-	public SolrTemplate solrTemplate(SolrClient factory)
+	public SolrTemplate solrTemplate(SolrClient client)
 	{
-		return new SolrTemplate(factory);
+		return new SolrTemplate(client);
 	}
 
 	/**
-	 * A config to provide {@link SolrClientFactory} for production
-	 * environment.
+	 * A config to provide {@link SolrClient} for production environment.
 	 *
 	 * @author goobar
 	 *
 	 */
 	@Configuration
 	@Profile({ "production" })
-	public static class ProductionSolrClientFactoryConfig
+	public static class ProductionSolrClientConfig
 	{
 		/**
 		 * @return the http solr client factory
@@ -60,15 +58,15 @@ public class SolrConfig
 	}
 
 	/**
-	 * A config to provide {@link SolrClientFactory} for test purposes. This
-	 * is also the default client used, when no other profile is activated.
+	 * A config to provide {@link SolrClient} for test purposes. This is
+	 * also the default client used, when no other profile is activated.
 	 *
 	 * @author goobar
 	 *
 	 */
 	@Configuration
 	@Profile({ "test", "default" })
-	public static class TestSolrClientFactoryConfig
+	public static class TestSolrClientConfig
 	{
 
 		/**
