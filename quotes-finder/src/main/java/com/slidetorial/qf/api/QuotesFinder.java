@@ -4,6 +4,7 @@
 package com.slidetorial.qf.api;
 
 import java.util.Collection;
+import com.slidetorial.qf.matcher.Quote;
 
 /**
  * A main interface to find all quotes in input text.

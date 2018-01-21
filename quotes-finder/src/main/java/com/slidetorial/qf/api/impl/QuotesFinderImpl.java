@@ -6,9 +6,11 @@ package com.slidetorial.qf.api.impl;
 import static com.google.common.base.Preconditions.checkNotNull;
 import java.util.Collection;
 import java.util.stream.Collectors;
-import com.slidetorial.qf.api.Quote;
 import com.slidetorial.qf.api.QuotesFinder;
 import com.slidetorial.qf.api.QuotesFinderException;
+import com.slidetorial.qf.matcher.PhraseExtractor;
+import com.slidetorial.qf.matcher.Quote;
+import com.slidetorial.qf.matcher.QuotesPhraseMatcher;
 
 /**
  * A thin application layer wrapper to coordinate execution of specialized

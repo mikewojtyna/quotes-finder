@@ -1,10 +1,9 @@
 /**
  *
  */
-package com.slidetorial.qf.api.impl;
+package com.slidetorial.qf.matcher;
 
 import java.util.Collection;
-import com.slidetorial.qf.api.Quote;
 
 /**
  * A component to match phrase against all available quotes. This interface is

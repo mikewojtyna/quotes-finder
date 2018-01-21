@@ -15,10 +15,11 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import com.google.common.testing.NullPointerTester;
-import com.slidetorial.qf.api.impl.Phrase;
-import com.slidetorial.qf.api.impl.PhraseExtractor;
 import com.slidetorial.qf.api.impl.QuotesFinderImpl;
-import com.slidetorial.qf.api.impl.QuotesPhraseMatcher;
+import com.slidetorial.qf.matcher.Phrase;
+import com.slidetorial.qf.matcher.PhraseExtractor;
+import com.slidetorial.qf.matcher.Quote;
+import com.slidetorial.qf.matcher.QuotesPhraseMatcher;
 import com.slidetorial.qf.testutils.FixtureUtils;
 
 /**

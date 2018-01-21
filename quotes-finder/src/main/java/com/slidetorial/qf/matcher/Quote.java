@@ -1,7 +1,7 @@
 /**
  *
  */
-package com.slidetorial.qf.api;
+package com.slidetorial.qf.matcher;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 

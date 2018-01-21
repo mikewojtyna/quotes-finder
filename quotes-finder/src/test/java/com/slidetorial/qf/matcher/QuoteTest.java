@@ -1,7 +1,7 @@
 /**
  *
  */
-package com.slidetorial.qf.api;
+package com.slidetorial.qf.matcher;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertFalse;
@@ -10,6 +10,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import com.google.common.testing.NullPointerTester;
+import com.slidetorial.qf.matcher.Quote;
 import nl.jqno.equalsverifier.EqualsVerifier;
 
 /**

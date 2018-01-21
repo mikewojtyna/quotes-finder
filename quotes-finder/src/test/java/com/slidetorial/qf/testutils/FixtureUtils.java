@@ -4,8 +4,8 @@
 package com.slidetorial.qf.testutils;
 
 import org.apache.commons.lang3.RandomStringUtils;
-import com.slidetorial.qf.api.Quote;
-import com.slidetorial.qf.api.impl.Phrase;
+import com.slidetorial.qf.matcher.Phrase;
+import com.slidetorial.qf.matcher.Quote;
 
 /**
  * @author goobar

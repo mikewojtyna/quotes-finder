@@ -1,7 +1,7 @@
 /**
  *
  */
-package com.slidetorial.qf.api.impl;
+package com.slidetorial.qf.matcher;
 
 /**
  * @author goobar

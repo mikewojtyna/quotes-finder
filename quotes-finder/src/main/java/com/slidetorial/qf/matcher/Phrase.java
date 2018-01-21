@@ -1,7 +1,7 @@
 /**
  *
  */
-package com.slidetorial.qf.api.impl;
+package com.slidetorial.qf.matcher;
 
 /**
  * Represents a "phrase". For the needs of this project, we define it as
