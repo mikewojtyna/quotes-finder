@@ -19,7 +19,8 @@ import com.slidetorial.qf.RootPackageMarker;
  * @author goobar
  *
  */
-@EnableSolrRepositories(basePackageClasses = RootPackageMarker.class)
+@EnableSolrRepositories(basePackageClasses = RootPackageMarker.class,
+	multicoreSupport = true)
 @Configuration
 public class SolrConfig
 {
