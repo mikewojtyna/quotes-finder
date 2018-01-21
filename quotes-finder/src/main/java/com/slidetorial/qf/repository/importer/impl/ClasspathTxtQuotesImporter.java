@@ -65,8 +65,7 @@ public class ClasspathTxtQuotesImporter implements QuotesImporter
 	{
 		try (BufferedReader reader = new BufferedReader(
 			new InputStreamReader(
-				ClassLoader.getSystemResourceAsStream(
-					"quotes.txt"),
+				getClass().getResourceAsStream("/quotes.txt"),
 				Charset.forName("UTF-8"))))
 		{
 			repository.save(reader.lines().parallel().map(line -> {

@@ -51,7 +51,7 @@ public class SolrConfig
 		 *                 if fails
 		 */
 		@Bean
-		public SolrClient solrClientFactory() throws Exception
+		public SolrClient solrClient() throws Exception
 		{
 			return new HttpSolrClient("http://localhost:8983/solr");
 		}
@@ -75,7 +75,7 @@ public class SolrConfig
 		 *                 if fails
 		 */
 		@Bean
-		public SolrClient solrClientFactory() throws Exception
+		public SolrClient solrClient() throws Exception
 		{
 			return new EmbeddedSolrServerFactory("classpath:solr")
 				.getSolrClient();
