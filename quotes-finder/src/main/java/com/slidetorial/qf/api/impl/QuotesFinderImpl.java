@@ -6,6 +6,7 @@ package com.slidetorial.qf.api.impl;
 import static com.google.common.base.Preconditions.checkNotNull;
 import java.util.Collection;
 import java.util.stream.Collectors;
+import org.springframework.stereotype.Service;
 import com.slidetorial.qf.api.QuotesFinder;
 import com.slidetorial.qf.api.QuotesFinderException;
 import com.slidetorial.qf.matcher.PhraseExtractor;
@@ -20,6 +21,7 @@ import com.slidetorial.qf.matcher.QuotesPhraseMatcher;
  * @author goobar
  *
  */
+@Service
 public class QuotesFinderImpl implements QuotesFinder
 {
 

@@ -8,6 +8,7 @@ import java.util.Collection;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.stereotype.Component;
 import com.slidetorial.qf.matcher.Phrase;
 import com.slidetorial.qf.matcher.PhraseExtractor;
 import com.slidetorial.qf.matcher.PhraseExtractorException;
@@ -29,6 +30,7 @@ import com.slidetorial.qf.matcher.PhraseExtractorException;
  * @author goobar
  *
  */
+@Component
 public class SentenceExtractor implements PhraseExtractor
 {
 
