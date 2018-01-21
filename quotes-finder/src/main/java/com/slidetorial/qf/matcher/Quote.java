@@ -4,6 +4,9 @@
 package com.slidetorial.qf.matcher;
 
 import static com.google.common.base.Preconditions.checkNotNull;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.solr.core.mapping.Indexed;
+import org.springframework.data.solr.core.mapping.SolrDocument;
 
 /**
  * A data class representing a quote.
@@ -11,19 +14,28 @@ import static com.google.common.base.Preconditions.checkNotNull;
  * @author goobar
  *
  */
+@SolrDocument(solrCoreName = "collection1")
 public class Quote
 {
+	@Id
+	@Indexed(name = "id", type = "string")
+	private final String id;
+
+	@Indexed(name = "sentence", type = "textTight", stored = true)
 	private final String sentence;
 
 	/**
+	 * @param id
+	 *                unique identifier
 	 * @param sentence
 	 *                a sentence
 	 * @throws NullPointerException
 	 *                 if any argument is null
 	 */
-	public Quote(String sentence) throws NullPointerException
+	public Quote(String id, String sentence) throws NullPointerException
 	{
-		validate(sentence);
+		validate(id, sentence);
+		this.id = id;
 		this.sentence = sentence;
 	}
 
@@ -46,18 +58,26 @@ public class Quote
 			return false;
 		}
 		Quote other = (Quote) obj;
-		if (sentence == null)
+		if (id == null)
 		{
-			if (other.sentence != null)
+			if (other.id != null)
 			{
 				return false;
 			}
 		}
-		else if (!sentence.equals(other.sentence))
+		else if (!id.equals(other.id))
 		{
 			return false;
 		}
 		return true;
+	}
+
+	/**
+	 * @return the id
+	 */
+	public String getId()
+	{
+		return id;
 	}
 
 	/**
@@ -76,8 +96,7 @@ public class Quote
 	{
 		final int prime = 31;
 		int result = 1;
-		result = prime * result
-			+ ((sentence == null) ? 0 : sentence.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
 
@@ -91,10 +110,12 @@ public class Quote
 	}
 
 	/**
+	 * @param id
 	 * @param sentence
 	 */
-	private void validate(String sentence)
+	private void validate(String id, String sentence)
 	{
+		checkNotNull(id, "'id' cannot be null");
 		checkNotNull(sentence, "'sentence' cannot be null");
 	}
 }

@@ -81,7 +81,7 @@ public class SentecePhraseExtractorTest
 		throws Exception
 	{
 		// given
-		String text = "This is the first sentence.This is the second sentence.";
+		String text = "This is the first sentence.This is the second sentence";
 
 		// when
 		Collection<Phrase> phrases = extractor.extract(text);

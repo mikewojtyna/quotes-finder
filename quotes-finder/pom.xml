@@ -25,9 +25,32 @@
 		<!-- dependencies versions -->
 		<guava-testlib.version>20.0</guava-testlib.version>
 		<equalsverifier.version>2.1.7</equalsverifier.version>
+		<junit-toolbox.version>2.3</junit-toolbox.version>
+		<commons-text.version>1.2</commons-text.version>
+		<guava.version>21.0</guava.version>
 	</properties>
 
 	<dependencies>
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>${guava.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.solr</groupId>
+			<artifactId>solr-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-text</artifactId>
+			<version>${commons-text.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.googlecode.junit-toolbox</groupId>
+			<artifactId>junit-toolbox</artifactId>
+			<version>${junit-toolbox.version}</version>
+			<scope>test</scope>
+		</dependency>
 		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava-testlib</artifactId>

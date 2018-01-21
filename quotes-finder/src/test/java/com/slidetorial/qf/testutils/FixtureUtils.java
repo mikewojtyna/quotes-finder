@@ -3,7 +3,8 @@
  */
 package com.slidetorial.qf.testutils;
 
-import org.apache.commons.lang3.RandomStringUtils;
+import java.util.UUID;
+import org.apache.commons.text.RandomStringGenerator;
 import com.slidetorial.qf.matcher.Phrase;
 import com.slidetorial.qf.matcher.Quote;
 
@@ -25,6 +26,15 @@ public class FixtureUtils
 	}
 
 	/**
+	 * @param text
+	 * @return
+	 */
+	public static Quote quote(String text)
+	{
+		return new Quote(randomQuoteId(), text);
+	}
+
+	/**
 	 * @return
 	 */
 	public static Phrase randomPhrase()
@@ -37,7 +47,7 @@ public class FixtureUtils
 	 */
 	public static Quote randomQuote()
 	{
-		return new Quote(randomText());
+		return quote(randomText());
 	}
 
 	/**
@@ -45,7 +55,16 @@ public class FixtureUtils
 	 */
 	public static String randomText()
 	{
-		return RandomStringUtils.randomAlphabetic(10);
+		return new RandomStringGenerator.Builder().withinRange('a', 'z')
+			.build().generate(10);
+	}
+
+	/**
+	 * @return
+	 */
+	private static String randomQuoteId()
+	{
+		return UUID.randomUUID().toString();
 	}
 
 }

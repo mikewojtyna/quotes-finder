@@ -5,12 +5,12 @@ package com.slidetorial.qf.matcher;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertFalse;
-import org.apache.commons.lang3.RandomStringUtils;
+import org.apache.commons.lang3.RandomUtils;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import com.google.common.testing.NullPointerTester;
-import com.slidetorial.qf.matcher.Quote;
+import com.slidetorial.qf.testutils.FixtureUtils;
 import nl.jqno.equalsverifier.EqualsVerifier;
 
 /**
@@ -34,18 +34,21 @@ public class QuoteTest
 	{
 		// given
 		String sentence = randomSentence();
+		String id = Integer.toString(RandomUtils.nextInt());
 
 		// when
-		Quote quote = new Quote(sentence);
+		Quote quote = new Quote(id, sentence);
 
 		// then
 		assertThat(quote.getSentence()).isEqualTo(sentence);
+		assertThat(quote.getId()).isEqualTo(id);
 	}
 
 	@Test
 	public void should_Pass_EqualsTests() throws Exception
 	{
-		EqualsVerifier.forClass(Quote.class).usingGetClass().verify();
+		EqualsVerifier.forClass(Quote.class).usingGetClass()
+			.withOnlyTheseFields("id").verify();
 	}
 
 	@Test
@@ -75,7 +78,7 @@ public class QuoteTest
 	 */
 	private Object instance()
 	{
-		return new Quote(randomSentence());
+		return FixtureUtils.randomQuote();
 	}
 
 	/**
@@ -83,7 +86,7 @@ public class QuoteTest
 	 */
 	private String randomSentence()
 	{
-		return RandomStringUtils.randomAlphabetic(10);
+		return FixtureUtils.randomText();
 	}
 
 }
