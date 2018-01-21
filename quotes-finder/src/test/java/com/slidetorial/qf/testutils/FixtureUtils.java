@@ -3,6 +3,7 @@
  */
 package com.slidetorial.qf.testutils;
 
+import java.text.MessageFormat;
 import java.util.UUID;
 import org.apache.commons.text.RandomStringGenerator;
 import com.slidetorial.qf.matcher.Phrase;
@@ -26,12 +27,31 @@ public class FixtureUtils
 	}
 
 	/**
-	 * @param text
+	 * @param sentence
 	 * @return
 	 */
-	public static Quote quote(String text)
+	public static Quote quote(String sentence)
 	{
-		return new Quote(randomQuoteId(), text);
+		return new Quote(randomQuoteId(), sentence, randomAuthor());
+	}
+
+	/**
+	 * @param author
+	 * @param sentence
+	 * @return
+	 */
+	public static Quote quote(String sentence, String author)
+	{
+		return new Quote(randomQuoteId(), sentence, author);
+	}
+
+	/**
+	 * @return
+	 */
+	public static String randomAuthor()
+	{
+		return MessageFormat.format("Author {0}",
+			FixtureUtils.randomText());
 	}
 
 	/**

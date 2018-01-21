@@ -17,8 +17,11 @@ import org.springframework.data.solr.core.mapping.SolrDocument;
 @SolrDocument(solrCoreName = "collection1")
 public class Quote
 {
+	@Indexed(name = "author", type = "string")
+	private final String author;
+
 	@Id
-	@Indexed(name = "id", type = "string")
+	@Indexed(name = "id", type = "string", required = true)
 	private final String id;
 
 	@Indexed(name = "sentence", type = "textTight", stored = true)
@@ -29,14 +32,18 @@ public class Quote
 	 *                unique identifier
 	 * @param sentence
 	 *                a sentence
+	 * @param author
+	 *                author of the quote
 	 * @throws NullPointerException
 	 *                 if any argument is null
 	 */
-	public Quote(String id, String sentence) throws NullPointerException
+	public Quote(String id, String sentence, String author)
+		throws NullPointerException
 	{
-		validate(id, sentence);
+		validate(id, sentence, author);
 		this.id = id;
 		this.sentence = sentence;
+		this.author = author;
 	}
 
 	/* (non-Javadoc)
@@ -70,6 +77,14 @@ public class Quote
 			return false;
 		}
 		return true;
+	}
+
+	/**
+	 * @return the author
+	 */
+	public String getAuthor()
+	{
+		return author;
 	}
 
 	/**
@@ -112,10 +127,12 @@ public class Quote
 	/**
 	 * @param id
 	 * @param sentence
+	 * @param author
 	 */
-	private void validate(String id, String sentence)
+	private void validate(String id, String sentence, String author)
 	{
 		checkNotNull(id, "'id' cannot be null");
 		checkNotNull(sentence, "'sentence' cannot be null");
+		checkNotNull(author, "'author' cannot be null");
 	}
 }

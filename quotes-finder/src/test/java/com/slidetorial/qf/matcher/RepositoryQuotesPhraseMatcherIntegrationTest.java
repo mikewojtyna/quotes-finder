@@ -46,7 +46,7 @@ public class RepositoryQuotesPhraseMatcherIntegrationTest
 	public void should_FindExactlyMatchingQuote() throws Exception
 	{
 		// given
-		String text = "One of the advantages of being disorderly is that one is constantly making exciting discoveries";
+		String text = "One of the advantages of being disorderly is that one is constantly making exciting discoveries.";
 		Phrase exactPhrase = phrase(text);
 		Quote expectedQuote = quote(text);
 		// populate repository
@@ -71,7 +71,7 @@ public class RepositoryQuotesPhraseMatcherIntegrationTest
 			"ONE of the _AdVaNtaGES_ Of!       BEiNG DisoRDerLy is that constantly MaKING EXCiting");
 		// expected quotes
 		Quote firstExpectedQuote = quote(
-			"One of the advantages of being disorderly is that one is constantly making exciting discoveries");
+			"One of the advantages of being disorderly is that one is constantly making exciting discoveries.");
 		Quote secondExpectedQuote = quote(
 			"Prefix One of the advantages of being disorderly is that constantly making exciting discoveries Suffix");
 		Quote thirdExpectedQuote = quote(
@@ -100,7 +100,7 @@ public class RepositoryQuotesPhraseMatcherIntegrationTest
 	{
 		// given
 		Quote expectedQuote = quote(
-			"One of the advantages of being disorderly is that one is constantly making exciting discoveries");
+			"One of the advantages of being disorderly is that one is constantly making exciting discoveries.");
 		Phrase similarPhrase = phrase(
 			"ONE of the _AdVaNtaGES_ Of!       BEiNG DisoRDerLy is that constantly MaKING EXCiting");
 		// populate repository
@@ -115,6 +115,47 @@ public class RepositoryQuotesPhraseMatcherIntegrationTest
 
 		// then
 		assertThat(matchingQuotes).containsOnly(expectedQuote);
+	}
+
+	@Test
+	public void should_NotFindAnyQuote_When_PhraseWordProximityIsGreaterThan2()
+		throws Exception
+	{
+		// given
+		Quote expectedQuote = quote(
+			"One of the advantages of being disorderly is that one is constantly making exciting discoveries.");
+		Phrase similarPhrase = phrase(
+			"One of the advantages disorderly is constantly making exciting discoveries");
+		// populate repository
+		// ... with matching quote
+		repository.save(expectedQuote);
+		// ... and with some fake quotes
+		repository.save(quote(randomText()));
+		repository.save(quote(randomText()));
+
+		// when
+		Collection<Quote> matchingQuotes = matcher.match(similarPhrase);
+
+		// then
+		assertThat(matchingQuotes).isEmpty();
+	}
+
+	@Test
+	public void should_ReturnStoredAuthor() throws Exception
+	{
+		// given
+		String text = "One of the advantages of being disorderly is that one is constantly making exciting discoveries.";
+		Phrase exactPhrase = phrase(text);
+		String author = "A. A. Milne";
+		// populate repository
+		repository.save(quote(text, author));
+
+		// when
+		Collection<Quote> matchingQuotes = matcher.match(exactPhrase);
+
+		// then
+		assertThat(matchingQuotes.iterator().next().getAuthor())
+			.isEqualTo(author);
 	}
 
 	/**
@@ -142,6 +183,16 @@ public class RepositoryQuotesPhraseMatcherIntegrationTest
 	private Quote quote(String sentence)
 	{
 		return FixtureUtils.quote(sentence);
+	}
+
+	/**
+	 * @param author
+	 * @param sentence
+	 * @return
+	 */
+	private Quote quote(String sentence, String author)
+	{
+		return FixtureUtils.quote(sentence, author);
 	}
 
 	/**

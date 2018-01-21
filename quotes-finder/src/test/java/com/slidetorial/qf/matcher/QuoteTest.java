@@ -35,13 +35,15 @@ public class QuoteTest
 		// given
 		String sentence = randomSentence();
 		String id = Integer.toString(RandomUtils.nextInt());
+		String author = randomAuthor();
 
 		// when
-		Quote quote = new Quote(id, sentence);
+		Quote quote = new Quote(id, sentence, author);
 
 		// then
 		assertThat(quote.getSentence()).isEqualTo(sentence);
 		assertThat(quote.getId()).isEqualTo(id);
+		assertThat(quote.getAuthor()).isEqualTo(author);
 	}
 
 	@Test
@@ -79,6 +81,14 @@ public class QuoteTest
 	private Object instance()
 	{
 		return FixtureUtils.randomQuote();
+	}
+
+	/**
+	 * @return
+	 */
+	private String randomAuthor()
+	{
+		return FixtureUtils.randomAuthor();
 	}
 
 	/**
