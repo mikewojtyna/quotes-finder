@@ -25,6 +25,6 @@ public interface QuotesFinder
 	 * @throws QuotesFinderException
 	 *                 if fails
 	 */
-	Collection<Quote> findQuotes(String text)
+	Collection<Quote> find(String text)
 		throws NullPointerException, QuotesFinderException;
 }
