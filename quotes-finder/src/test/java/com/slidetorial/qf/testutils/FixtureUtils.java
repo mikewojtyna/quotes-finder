@@ -16,11 +16,20 @@ public class FixtureUtils
 {
 
 	/**
+	 * @param text
+	 * @return
+	 */
+	public static Phrase phrase(String text)
+	{
+		return new Phrase(text);
+	}
+
+	/**
 	 * @return
 	 */
 	public static Phrase randomPhrase()
 	{
-		return new Phrase();
+		return phrase(randomText());
 	}
 
 	/**
@@ -28,7 +37,15 @@ public class FixtureUtils
 	 */
 	public static Quote randomQuote()
 	{
-		return new Quote(RandomStringUtils.randomAlphabetic(10));
+		return new Quote(randomText());
+	}
+
+	/**
+	 * @return
+	 */
+	public static String randomText()
+	{
+		return RandomStringUtils.randomAlphabetic(10);
 	}
 
 }
