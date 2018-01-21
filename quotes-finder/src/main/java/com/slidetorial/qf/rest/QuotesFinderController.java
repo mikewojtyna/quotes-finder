@@ -41,7 +41,8 @@ public class QuotesFinderController
 	 * @return found quotes
 	 */
 	@GetMapping
-	public Collection<Quote> findQuotes(@RequestParam String text)
+	public Collection<Quote> findQuotes(
+		@RequestParam(required = true) String text)
 	{
 		return finder.find(text);
 	}
