@@ -22,6 +22,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import com.slidetorial.qf.IntegrationTestMarker;
 import com.slidetorial.qf.api.QuotesFinder;
+import com.slidetorial.qf.api.QuotesFinderException;
 import com.slidetorial.qf.matcher.Quote;
 import com.slidetorial.qf.testutils.FixtureUtils;
 
@@ -68,6 +69,24 @@ public class QuotesFinderControllerIntegrationTest
 				is(foundQuote.getSentence())))
 			.andExpect(jsonPath("$[0].author",
 				is(foundQuote.getAuthor())));
+	}
+
+	@Test
+	public void should_HandleException() throws Exception
+	{
+		// given
+		String text = "First sentence. And then they all died. Third sentence.";
+		// configure query finder to fail
+		when(finder.find(text)).thenThrow(
+			new QuotesFinderException("query finder failed"));
+
+		// when
+		mockMvc.perform(get("/quotes-finder").param("text", text))
+			// then
+			.andExpect(status().isInternalServerError())
+			.andExpect(jsonPath("$.code",
+				is(ExceptionMessage.EX_CODE.EX_CODE_DEFAULT
+					.name())));
 	}
 
 	/**
