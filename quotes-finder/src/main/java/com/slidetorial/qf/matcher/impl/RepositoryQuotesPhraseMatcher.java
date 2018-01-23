@@ -4,7 +4,6 @@
 package com.slidetorial.qf.matcher.impl;
 
 import java.util.Collection;
-import org.springframework.stereotype.Component;
 import com.slidetorial.qf.matcher.Phrase;
 import com.slidetorial.qf.matcher.Quote;
 import com.slidetorial.qf.matcher.QuotesPhraseMatcher;
@@ -18,7 +17,6 @@ import com.slidetorial.qf.repository.QuotesRepository;
  * @author goobar
  *
  */
-@Component
 public class RepositoryQuotesPhraseMatcher implements QuotesPhraseMatcher
 {
 

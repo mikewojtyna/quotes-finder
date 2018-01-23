@@ -11,6 +11,7 @@ import org.junit.Test;
 import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import com.slidetorial.qf.IntegrationTestMarker;
@@ -28,6 +29,7 @@ import com.slidetorial.qf.testutils.FixtureUtils;
 public class RepositoryQuotesPhraseMatcherIntegrationTest
 {
 	@Autowired
+	@Qualifier("repositoryMatcher")
 	private QuotesPhraseMatcher matcher;
 
 	@Autowired
